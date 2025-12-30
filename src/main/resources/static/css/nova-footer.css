@@ -1,0 +1,53 @@
+:root{ --nova-footer-h: 72px; }
+
+/*
+  Footer should sit at the end of the page (normal document flow).
+  - It is NOT fixed to the viewport.
+  - On short pages, it stays at the bottom (body is flex-column in theme.css).
+*/
+
+.nova-footer{
+  width: 100%;
+  margin-top: auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height: var(--nova-footer-h);
+  padding: 18px 16px;
+  z-index: 1;
+  background: rgba(10, 16, 38, 0.78);
+  border-top: 1px solid rgba(140,170,255,0.14);
+  backdrop-filter: blur(14px);
+}
+
+.nova-footer .inner{
+  width: min(1200px, 96vw);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  gap: 12px;
+}
+
+.nova-footer .center{
+  text-align: center;
+  color: rgba(234,242,255,0.82);
+  font-weight: 900;
+  font-size: 15px;
+  letter-spacing: .2px;
+}
+
+/* Legacy classes kept (in case any old page still has them) */
+.nova-footer .left,
+.nova-footer .right{
+  display:none;
+}
+
+.nova-footer a{
+  color: rgba(34,211,238,0.92);
+  text-decoration: none;
+  font-weight: 950;
+}
+.nova-footer a:hover{ text-decoration: underline; }
+
+/* Kept for backward-compat (no longer needed when footer is not fixed) */
+body.nova-has-footer{ padding-bottom: 0; }

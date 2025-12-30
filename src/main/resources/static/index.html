@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head> <meta charset="utf-8"/> <meta name="viewport" content="width=device-width,initial-scale=1"/> <title>InOrder</title> <link rel="stylesheet" href="/css/theme.css"/>
+<link rel="stylesheet" href="/css/nova-footer.css">
+  <link rel="icon" type="image/png" href="/images/logo.png">
+</head>
+<body>
+<div class="app-bg"></div>
+<script src="/js/app.js"></script>
+<script> (async ()=>{
+    if(!App.getToken()) { window.location.href = '/login.html'; return; }
+    const role = await App.detectRole(true);
+    if(role === 'ADMIN') window.location.href = '/admin/dashboard.html';
+    else if(role === 'STORE_MANAGER') window.location.href = '/manager/dashboard.html';
+    else if(role === 'CUSTOMER') window.location.href = '/customer/products.html';
+    else { App.toast('Could not detect role. Please login again.', 'danger'); App.logout(); }
+  })();
+</script>
+<script src="/js/nova-footer.js"></script>
+</body>
+</html>

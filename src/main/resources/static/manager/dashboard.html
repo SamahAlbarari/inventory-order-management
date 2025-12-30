@@ -1,0 +1,22 @@
+<!doctype html>
+<html lang="en">
+<head> <meta charset="utf-8"/> <meta name="viewport" content="width=device-width,initial-scale=1"/> <title>Dashboard - InOrder</title> <link rel="stylesheet" href="/css/theme.css"/>
+<link rel="stylesheet" href="/css/nova-footer.css">
+  <link rel="icon" type="image/png" href="/images/logo.png">
+</head>
+<body>
+<div class="app-bg"> <div class="shell"> <aside class="sidebar"> <div class="brand"><img src="/images/logo.png" alt="logo"/><div class="name">InOrder</div></div> <nav class="nav"> <a href="/manager/dashboard.html"> Dashboard</a> <a href="/manager/products.html"> Products</a> <a href="/manager/low-stock.html">Low stock</a> <a href="/manager/purchase-orders.html"> Purchase orders</a> <a href="/manager/recent-orders.html"> Recent orders</a> <a href="/manager/customers.html"> Customers</a> </nav> <div class="spacer"></div> <div class="userbox" id="userbox">STORE MANAGER</div> <button class="logout-btn" id="logoutBtn">Logout</button> </aside> <main class="main"><section class="panel">
+<div class="topbar"> <div> <h1 class="h1">Store Manager Dashboard</h1> <p class="sub">Stock, orders & purchase orders</p> </div> <div class="actions"><button class="btn ghost" id="refreshMgr">Refresh</button></div>
+</div>
+<div class="grid" id="mgrDashCards"> <div class="card dash-card" data-view="stock" style="grid-column: span 3"> <div class="k">Total Stock</div> <div class="v" id="totalStock">—</div> </div> <div class="card dash-card" data-view="low" style="grid-column: span 3"> <div class="k">Low Stock Items</div> <div class="v" id="lowCount">—</div> </div> <div class="card dash-card" data-view="po" style="grid-column: span 3"> <div class="k">Pending Purchase Orders</div> <div class="v" id="pendingCount">—</div> </div> <div class="card dash-card" data-view="orders" style="grid-column: span 3"> <div class="k">Recent Orders</div> <div class="v" id="recentCount">—</div> </div>
+</div> <section class="panel" id="dashDetailPanel" style="margin-top:16px"> <div class="topbar"> <div> <h2 class="h2" id="dashDetailTitle">Click a card to view details</h2> <p class="sub" id="dashDetailSub">Tip: You can manage everything from the left menu too.</p> </div> <div class="actions" id="dashDetailActions"></div> </div> <div id="dashDetailBody" class="dash-detail-body"></div>
+</section> <div class="sub" style="margin-top:16px">Use the left menu to manage products, purchase orders and customers.</div>
+</section></main> </div>
+</div>
+<div class="modal-backdrop" id="modalBackdrop"> <div class="modal" id="modal"> <h3 id="modalTitle">Modal</h3> <div id="modalBody"></div> <div class="footer"> <button class="btn ghost" id="modalCancel">Cancel</button> <button class="btn" id="modalOk">Save</button> </div> </div>
+</div>
+<script src="/js/app.js"></script>
+<script src="/js/manager.js"></script>
+<script src="/js/nova-footer.js"></script>
+</body>
+</html>

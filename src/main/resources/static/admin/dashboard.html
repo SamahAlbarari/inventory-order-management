@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head> <meta charset="utf-8"/> <meta name="viewport" content="width=device-width,initial-scale=1"/> <title>Dashboard - InOrder</title> <link rel="stylesheet" href="/css/theme.css"/>
+  <link rel="stylesheet" href="/css/nova-footer.css">
+  <style>
+    /* Admin dashboard layout v2 (only affects this page) */
+    .admin-dash2 .panel{position:relative; overflow:hidden}
+    .admin-dash2 .topbar{align-items:center}
+    .admin-dash2 .h1{line-height:1.15}
+    .admin-dash2 .dash-sep{border:none; border-top:1px solid rgba(140,170,255,0.16); margin:14px 0 2px}
+    .admin-dash2 .dash-grid{display:grid; grid-template-columns:repeat(12,1fr); gap:16px; margin-top:18px}
+
+    .admin-dash2 .dash-card2{
+      background: rgba(255,255,255,0.055);
+      border: 1px solid rgba(140,170,255,0.14);
+      border-radius: 18px;
+      padding: 14px 16px;
+      box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+      transition: transform .12s ease, box-shadow .12s ease;
+      min-height: 128px;
+    }
+    .admin-dash2 .dash-card2:hover{transform:translateY(-2px); box-shadow: 0 18px 40px rgba(0,0,0,0.40)}
+    .admin-dash2 .dash-head{display:flex; align-items:center; gap:10px; font-weight:900}
+    .admin-dash2 .dash-ic{width:34px; height:34px; border-radius:12px; background: rgba(59,130,246,0.14); border: 1px solid rgba(59,130,246,0.22); display:flex; align-items:center; justify-content:center; flex:0 0 auto}
+    .admin-dash2 .dash-ic svg{width:18px; height:18px; opacity:.9}
+    .admin-dash2 .dash-title{font-size:16px; font-weight:900}
+    .admin-dash2 .dash-value{margin-top:6px; font-size:30px; font-weight:900}
+    .admin-dash2 .dash-lines{margin-top:8px; border-top:1px solid rgba(140,170,255,0.14); padding-top:10px; display:flex; flex-direction:column; gap:8px}
+    .admin-dash2 .dash-line{display:flex; justify-content:space-between; gap:12px; color: var(--muted); font-weight:800}
+    .admin-dash2 .dash-line b{color: var(--text)}
+
+    .admin-dash2 .span-4{grid-column: span 4}
+    .admin-dash2 .span-12{grid-column: span 12}
+    .admin-dash2 .tall{min-height: 160px}
+
+    /* Make sure it stays clean on small screens */
+    @media (max-width: 980px){
+      .admin-dash2 .span-4{grid-column: span 12}
+    }
+  </style>
+  <link rel="icon" type="image/png" href="/images/logo.png">
+</head>
+<body class="admin-dash2">
+<div class="app-bg"> <div class="shell"> <aside class="sidebar"> <div class="brand"> <img src="/images/logo.png" alt="logo"/> <div class="name">InOrder</div> </div> <nav class="nav"> <a href="/admin/dashboard.html" class="dashboard"> Dashboard</a> <a href="/admin/users.html" class="dashboard"> Users</a> <a href="/admin/categories.html" class="dashboard">️ Category</a> <a href="/admin/suppliers.html" class="dashboard"> Suppliers</a> <a href="/admin/roles.html" class="dashboard"> Roles</a> </nav> <div class="spacer"></div> <div class="userbox" id="userbox">ADMIN</div> <button class="logout-btn" id="logoutBtn">Logout</button> </aside> <main class="main"> <section class="panel"> <div class="topbar"> <div> <h1 class="h1">Hello <span id="adminName">Admin</span>, <span style="color:var(--accent)">Lets get to work</span></h1> <p class="sub">Overview & stats</p> </div> <div class="actions"> <button class="btn ghost" id="refreshOverview">Refresh</button> </div>
+</div>
+
+  <hr class="dash-sep"/>
+
+  <!-- Dashboard cards v2 (matches the target layout) -->
+  <div class="dash-grid" id="overviewGrid">
+
+    <!-- Users -->
+    <div class="dash-card2 span-4" role="group" aria-label="Users overview">
+      <div class="dash-head">
+        <div class="dash-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        </div>
+        <div class="dash-title">Users</div>
+      </div>
+      <div class="dash-value" id="ovUsers">—</div>
+      <div class="dash-lines">
+        <div class="dash-line"><span>Admins</span><b id="ovUsersAdmins">—</b></div>
+        <div class="dash-line"><span>Managers</span><b id="ovUsersManagers">—</b></div>
+        <div class="dash-line"><span>Customers</span><b id="ovUsersCustomers">—</b></div>
+      </div>
+      <!-- legacy meta (kept for safety) -->
+      <div class="m" id="ovUsersMeta" style="display:none">—</div>
+    </div>
+
+    <!-- Products -->
+    <div class="dash-card2 span-4" role="group" aria-label="Products overview">
+      <div class="dash-head">
+        <div class="dash-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73l7 4a2 2 0 0 0 2 0l7-4a2 2 0 0 0 1-1.73z"/><path d="M3.27 6.96L12 12.01l8.73-5.05"/><path d="M12 22.08V12"/></svg>
+        </div>
+        <div class="dash-title">Product</div>
+      </div>
+      <div class="dash-value" id="ovProducts">—</div>
+      <div class="dash-lines">
+        <div class="dash-line"><span>Active</span><b id="ovProductsActive">—</b></div>
+        <div class="dash-line"><span>Inactive</span><b id="ovProductsInactive">—</b></div>
+        <div class="dash-line"><span>Low stock</span><b id="ovProductsLow">—</b></div>
+        <div class="dash-line"><span>Out of stock</span><b id="ovProductsOut">—</b></div>
+      </div>
+      <div class="m" id="ovProductsMeta" style="display:none">—</div>
+    </div>
+
+    <!-- Orders -->
+    <div class="dash-card2 span-4" role="group" aria-label="Orders overview">
+      <div class="dash-head">
+        <div class="dash-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12h6"/><path d="M9 16h6"/><path d="M9 8h6"/><path d="M5 4h14a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2z"/></svg>
+        </div>
+        <div class="dash-title">Orders</div>
+      </div>
+      <div class="dash-value" id="ovOrders">—</div>
+      <div class="dash-lines">
+        <div class="dash-line"><span>Confirmed</span><b id="ovOrdersConfirmed">—</b></div>
+        <div class="dash-line"><span>Delivered</span><b id="ovOrdersDelivered">—</b></div>
+        <div class="dash-line"><span>Cancelled</span><b id="ovOrdersCancelled">—</b></div>
+        <div class="dash-line"><span>Today's Orders</span><b id="ovOrdersToday">—</b></div>
+      </div>
+      <div class="m" id="ovOrdersMeta" style="display:none">—</div>
+    </div>
+
+    <!-- Revenue -->
+    <div class="dash-card2 span-4 tall" role="group" aria-label="Revenue overview">
+      <div class="dash-head">
+        <div class="dash-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 1v22"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7H14a3.5 3.5 0 0 1 0 7H6"/></svg>
+        </div>
+        <div class="dash-title">Revenue</div>
+      </div>
+      <div class="dash-value" id="ovRevenue">—</div>
+      <div class="dash-lines">
+        <div class="dash-line"><span>Today Revenue</span><b id="ovRevenueToday">—</b></div>
+        <div class="dash-line"><span>Refunded</span><b id="ovRevenueRefunded">—</b></div>
+      </div>
+      <div class="m" id="ovRevenueMeta" style="display:none">—</div>
+    </div>
+
+    <!-- Purchase Orders (from supplier stats) -->
+    <div class="dash-card2 span-4" role="group" aria-label="Purchase orders overview">
+      <div class="dash-head">
+        <div class="dash-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M6 2h12l2 6H4l2-6z"/><path d="M4 8h16v14H4z"/><path d="M9 12h6"/></svg>
+        </div>
+        <div class="dash-title">Purchase Orders</div>
+      </div>
+      <div class="dash-value" id="ovPurchaseOrders">—</div>
+      <div class="dash-lines">
+        <div class="dash-line"><span>PENDING</span><b id="ovPOPending">—</b></div>
+        <div class="dash-line"><span>RECEIVED</span><b id="ovPOReceived">—</b></div>
+      </div>
+    </div>
+
+    <!-- Suppliers -->
+    <div class="dash-card2 span-4" role="group" aria-label="Suppliers overview">
+      <div class="dash-head">
+        <div class="dash-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 21h18"/><path d="M5 21V7l7-4 7 4v14"/><path d="M9 21v-8h6v8"/></svg>
+        </div>
+        <div class="dash-title">Suppliers</div>
+      </div>
+      <div class="dash-value" id="ovSuppliers">—</div>
+      <div class="dash-lines">
+        <div class="dash-line"><span>Total</span><b id="ovSuppliersTotal">—</b></div>
+      </div>
+      <div class="m" id="ovSuppliersMeta" style="display:none">—</div>
+    </div>
+
+    <!-- Alerts -->
+    <div class="dash-card2 span-12" role="group" aria-label="Alerts overview">
+      <div class="dash-head">
+        <div class="dash-ic" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><path d="M12 9v4"/><path d="M12 17h.01"/></svg>
+        </div>
+        <div class="dash-title">Alerts</div>
+      </div>
+      <div class="dash-value" id="ovAlerts">—</div>
+      <div class="dash-lines" style="max-width:420px">
+        <div class="dash-line"><span>Low on Stock</span><b id="ovAlertsLow">—</b></div>
+        <div class="dash-line"><span>Out of Stock</span><b id="ovAlertsOut">—</b></div>
+      </div>
+      <div class="m" id="ovAlertsMeta" style="display:none">—</div>
+    </div>
+
+  </div>
+
+</section> </main> </div>
+</div> <div class="modal-backdrop" id="modalBackdrop"> <div class="modal" id="modal"> <h3 id="modalTitle">Modal</h3> <div id="modalBody"></div> <div class="footer"> <button class="btn ghost" id="modalCancel">Cancel</button> <button class="btn" id="modalOk">Save</button> </div> </div>
+</div> <script src="/js/app.js"></script>
+<script src="/js/admin.js"></script>
+<script src="/js/nova-footer.js"></script>
+</body>
+</html>

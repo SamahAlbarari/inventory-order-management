@@ -1,0 +1,18 @@
+<!doctype html>
+<html lang="en">
+<head> <meta charset="utf-8"/> <meta name="viewport" content="width=device-width,initial-scale=1"/> <title>Users - InOrder</title> <link rel="stylesheet" href="/css/theme.css"/>
+<link rel="stylesheet" href="/css/nova-footer.css">
+  <link rel="icon" type="image/png" href="/images/logo.png">
+</head>
+<body>
+<div class="app-bg"> <div class="shell"> <aside class="sidebar"> <div class="brand"> <img src="/images/logo.png" alt="logo"/> <div class="name">InOrder</div> </div> <nav class="nav"> <a href="/admin/dashboard.html" class="users"> Dashboard</a> <a href="/admin/users.html" class="users"> Users</a> <a href="/admin/categories.html" class="users">️ Category</a> <a href="/admin/suppliers.html" class="users"> Suppliers</a> <a href="/admin/roles.html" class="users"> Roles</a> </nav> <div class="spacer"></div> <div class="userbox" id="userbox">ADMIN</div> <button class="logout-btn" id="logoutBtn">Logout</button> </aside> <main class="main"> <section class="panel"> <div class="topbar"> <div> <h1 class="h1">Users</h1> <p class="sub">Manage customers, managers, and admins</p> </div> <div class="actions"> <button class="btn" id="btnCreateManager">+ Create Manager</button> <button class="btn secondary" id="btnCreateAdmin">+ Create Admin</button> </div>
+</div> <div class="searchbar"> <input id="usersPageSize" type="number" min="1" max="100" value="10" style="width:140px"/> <button class="btn ghost" id="usersReload">Reload</button> <div style="flex:1"></div> <div class="sub" id="usersPager">—</div>
+</div> <div class="table-wrap"> <table> <thead><tr><th>ID</th><th>Full Name</th><th>Email</th><th>Roles</th><th>Actions</th></tr></thead> <tbody id="usersTbody"></tbody> </table>
+</div> <div class="actions" style="margin-top:14px"> <button class="btn ghost" id="usersPrev">Prev</button> <button class="btn ghost" id="usersNext">Next</button>
+</div> </section> </main> </div>
+</div> <div class="modal-backdrop" id="modalBackdrop"> <div class="modal" id="modal"> <h3 id="modalTitle">Modal</h3> <div id="modalBody"></div> <div class="footer"> <button class="btn ghost" id="modalCancel">Cancel</button> <button class="btn" id="modalOk">Save</button> </div> </div>
+</div> <script src="/js/app.js"></script>
+<script src="/js/admin.js"></script>
+<script src="/js/nova-footer.js"></script>
+</body>
+</html>

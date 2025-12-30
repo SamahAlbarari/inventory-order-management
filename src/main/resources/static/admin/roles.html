@@ -1,0 +1,16 @@
+<!doctype html>
+<html lang="en">
+<head> <meta charset="utf-8"/> <meta name="viewport" content="width=device-width,initial-scale=1"/> <title>Roles - InOrder</title> <link rel="stylesheet" href="/css/theme.css"/>
+<link rel="stylesheet" href="/css/nova-footer.css">
+  <link rel="icon" type="image/png" href="/images/logo.png">
+</head>
+<body>
+<div class="app-bg"> <div class="shell"> <aside class="sidebar"> <div class="brand"> <img src="/images/logo.png" alt="logo"/> <div class="name">InOrder</div> </div> <nav class="nav"> <a href="/admin/dashboard.html" class="roles"> Dashboard</a> <a href="/admin/users.html" class="roles"> Users</a> <a href="/admin/categories.html" class="roles">️ Category</a> <a href="/admin/suppliers.html" class="roles"> Suppliers</a> <a href="/admin/roles.html" class="roles"> Roles</a> </nav> <div class="spacer"></div> <div class="userbox" id="userbox">ADMIN</div> <button class="logout-btn" id="logoutBtn">Logout</button> </aside> <main class="main"> <section class="panel"> <div class="topbar"> <div> <h1 class="h1">Roles</h1> <p class="sub">Add roles and assign them to users</p> </div> <div class="actions"> <button class="btn" id="btnCreateRole">+ Add Role</button> </div>
+</div> <div class="grid"> <div class="card" style="grid-column: span 6"> <div class="k">Existing Roles</div> <div class="table-wrap" style="margin-top:12px"> <table> <thead><tr><th>ID</th><th>Name</th></tr></thead> <tbody id="rolesTbody"></tbody> </table> </div> </div> <div class="card" style="grid-column: span 6"> <div class="k">Update User Roles</div> <div class="searchbar" style="margin-top:12px"> <input id="roleUserId" placeholder="User ID" type="number" style="width:160px"/> <input id="roleNames" placeholder="Role names (comma), e.g. CUSTOMER,STORE_MANAGER" style="flex:1; min-width:260px"/> <button class="btn ok" id="btnAddUserRoles">Add</button> <button class="btn danger" id="btnRemoveUserRoles">Delete</button> </div> <div class="m" id="roleUpdateResult" style="margin-top:10px"></div> </div>
+</div> </section> </main> </div>
+</div> <div class="modal-backdrop" id="modalBackdrop"> <div class="modal" id="modal"> <h3 id="modalTitle">Modal</h3> <div id="modalBody"></div> <div class="footer"> <button class="btn ghost" id="modalCancel">Cancel</button> <button class="btn" id="modalOk">Save</button> </div> </div>
+</div> <script src="/js/app.js"></script>
+<script src="/js/admin.js"></script>
+<script src="/js/nova-footer.js"></script>
+</body>
+</html>
